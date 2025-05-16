@@ -1,6 +1,7 @@
 # trino_cost_estimators
 
 Include the cost estimation models for Trino that I implemented.
+Use the benchmark of [zero-shot](https://www.vldb.org/pvldb/vol15/p2361-hilprecht.pdf) to Train, Evaluate the models
 
 ## Prerequisites
 
@@ -44,7 +45,7 @@ Zero-shot ベンチマークを使用して他のデータセットやワーク�
 https://github.com/DataManagementLab/zero-shot-cost-estimation
 
 ## Future Work
-- DACE や T3 などの最新モデルの実装
+- [DACE](https://zheng-kai.com/paper/icde_2024_liang.pdf) や [T3](https://db.in.tum.de/~rieger/papers/t3.pdf) などの最新モデルの実装
 
 - ハイパーパラメータチューニング機能の追加
 

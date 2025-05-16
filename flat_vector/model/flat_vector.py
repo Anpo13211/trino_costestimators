@@ -94,10 +94,16 @@ def main():
         y_test  = df_test["runtime"].to_numpy()
 
         # 学習時に使われた特徴リストを取得し、テストにも同じ列を用意
-        feature_cols = X_train.columns
-        X_train = X_train[feature_cols]
-        X_valid  = X_valid.reindex(columns=feature_cols, fill_value=0)
-        X_test  = X_test.reindex(columns=feature_cols, fill_value=0)
+        all_cols = (
+            X_train.columns
+            .union(X_valid.columns)
+            .union(X_test.columns)
+        )
+
+        # ② その「全集合」で全 DataFrame をリインデックス＆ゼロ埋め
+        X_train = X_train.reindex(columns=all_cols, fill_value=0)
+        X_valid = X_valid.reindex(columns=all_cols, fill_value=0)
+        X_test  = X_test.reindex(columns=all_cols, fill_value=0)
 
         # ----------------------------------------------------------------------------
         # 4. モデル訓練

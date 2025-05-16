@@ -55,10 +55,10 @@ def main():
     # 3. 評価指標 オブジェクト
     # ----------------------------------------------------------------------------
     metrics_objs = [
-        QError(percentile=50),
-        QError(percentile=90),
-        RMSE(),
-        MAPE()
+        QError(percentile=50, metric_prefix='test_'),
+        QError(percentile=90, metric_prefix='test_'),
+        RMSE(metric_prefix='test_'),
+        MAPE(metric_prefix='test_'),
     ]
 
     results = []

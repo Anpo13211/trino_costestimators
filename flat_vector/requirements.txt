@@ -1,0 +1,6 @@
+numpy
+pandas
+lightgbm
+scikit_learn
+tqdm
+trino

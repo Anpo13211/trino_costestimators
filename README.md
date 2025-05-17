@@ -25,10 +25,12 @@ pip install -r requirements.txt
 
 ## Usage
 ```bash
-# モデルディレクトリに移動
-cd model
+# データセットの演算子を抽出
+cd training
+python generate_op_idx_dict.py <root_plan_dir> -o op_idx_dict.json
 
-# flat_vector モデルの訓練とテストを実行
+# 抽出成功後、モデルディレクトリに移動し、モデルを訓練する
+cd model
 python flat_vector.py
 ```
 
@@ -41,7 +43,7 @@ python flat_vector.py
 - RMSE
 
 ## Benchmark Extension
-Zero-shot ベンチマークを使用して他のデータセットやワークロードに拡張できます:
+Zero-shot ベンチマークを使用してデータを増やしたり異なるワークロードのデータを集めたりできます:
 https://github.com/DataManagementLab/zero-shot-cost-estimation
 
 ## Future Work

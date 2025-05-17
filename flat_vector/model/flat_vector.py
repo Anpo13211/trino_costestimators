@@ -93,18 +93,6 @@ def main():
         X_test  = df_test.drop(columns=["runtime"] + meta_cols)
         y_test  = df_test["runtime"].to_numpy()
 
-        # 学習時に使われた特徴リストを取得し、テストにも同じ列を用意
-        all_cols = (
-            X_train.columns
-            .union(X_valid.columns)
-            .union(X_test.columns)
-        )
-
-        # ② その「全集合」で全 DataFrame をリインデックス＆ゼロ埋め
-        X_train = X_train.reindex(columns=all_cols, fill_value=0)
-        X_valid = X_valid.reindex(columns=all_cols, fill_value=0)
-        X_test  = X_test.reindex(columns=all_cols, fill_value=0)
-
         # ----------------------------------------------------------------------------
         # 4. モデル訓練
         # ----------------------------------------------------------------------------
@@ -141,7 +129,8 @@ def main():
         # ----------------------------------------------------------------------------
         # 6. 評価 (Metricクラス使用)
         # ----------------------------------------------------------------------------
-        y_pred = bst.predict(X_test, num_iteration=bst.best_iteration)
+        y_pred = bst.predict(X_test,
+                             num_iteration=bst.best_iteration)
         metrics_dict = {'test_datasets': test_name}
         for m in metrics_objs:
             m.evaluate(model=bst, metrics_dict=metrics_dict,
